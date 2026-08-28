@@ -255,7 +255,7 @@ with col_a:
         xaxis=dict(range=[1, 5.8], title="Note / 5"),
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="bar_notes")
 
 with col_b:
     st.markdown("## Distribution des notes")
@@ -275,7 +275,7 @@ with col_b:
         legend=dict(orientation="h", y=-0.3),
         xaxis=dict(tickvals=[1,2,3,4,5], ticktext=["1★","2★","3★","4★","5★"]),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="dist_notes")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 2 — Évolution temporelle + Donut
@@ -298,7 +298,7 @@ with col_c:
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", y=-0.25), yaxis=dict(range=[1, 5.5]),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="line_trend")
 
 with col_d:
     st.markdown("## Répartition des avis")
@@ -316,7 +316,7 @@ with col_d:
         height=270, margin=dict(l=10, r=10, t=10, b=10),
         showlegend=False, paper_bgcolor="rgba(0,0,0,0)",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="pie_vol")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 3 — Note par grade + Note par statut employé
@@ -344,7 +344,7 @@ with col_e:
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", y=-0.25), xaxis=dict(range=[0, 5.5]),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="bar_grade")
 
 with col_f:
     st.markdown("## Note selon le statut employé")
@@ -362,7 +362,7 @@ with col_f:
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", y=-0.25), yaxis=dict(range=[0, 5.5]),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="bar_statut")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 4 — Analyse thématique NLP pré-annotée
@@ -395,7 +395,7 @@ with tab_pro:
         fig.update_layout(margin=dict(l=10,r=10,t=10,b=10),
                           plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
                           legend=dict(orientation="h", y=-0.35), xaxis_tickangle=-10)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="theme_pro_main")
     with p2:
         st.markdown("### Sous-thèmes détaillés")
         df_stp = compute_themes(SOUS_THEME_PRO_COLS, df)
@@ -404,7 +404,7 @@ with tab_pro:
         fig.update_layout(margin=dict(l=10,r=10,t=10,b=10),
                           plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
                           legend=dict(orientation="h", y=-0.4), xaxis_tickangle=-30)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="theme_pro_sub")
 
 with tab_con:
     c1, c2 = st.columns(2)
@@ -416,7 +416,7 @@ with tab_con:
         fig.update_layout(margin=dict(l=10,r=10,t=10,b=10),
                           plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
                           legend=dict(orientation="h", y=-0.35), xaxis_tickangle=-10)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="theme_con_main")
     with c2:
         st.markdown("### Sous-thèmes détaillés")
         df_stc = compute_themes(SOUS_THEME_CON_COLS, df)
@@ -425,7 +425,7 @@ with tab_con:
         fig.update_layout(margin=dict(l=10,r=10,t=10,b=10),
                           plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
                           legend=dict(orientation="h", y=-0.4), xaxis_tickangle=-30)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="theme_con_sub")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 5 — NLP verbatims bruts
@@ -455,7 +455,7 @@ for tab_nlp, col_text in [(tab_np, "pros"), (tab_nc, "cons")]:
                     plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
                     yaxis=dict(autorange="reversed"), showlegend=False,
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key=f"nlp_{col_text}_{ent}")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 6 — Top villes + Durée d'emploi vs note
@@ -485,7 +485,7 @@ with col_g:
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", y=-0.2),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="bar_loc")
 
 with col_h:
     st.markdown("## ⏱️ Note selon l'ancienneté")
@@ -510,7 +510,7 @@ with col_h:
         plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
         legend=dict(orientation="h", y=-0.2), yaxis=dict(range=[1, 5.5]),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="line_dur")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ROW 7 — Tableau synthétique
